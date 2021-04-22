@@ -75,8 +75,8 @@ def cos_sim(x, y):
     x = np.mat(x)
     y = np.mat(y)
     num = float(np.vstack([x, y]) * y.T)
-    denom = np.linalg.norm(np.vstack([x, y])) * np.linalg.norm(y)
-    cos = num / denom
+    denominator = np.linalg.norm(np.vstack([x, y])) * np.linalg.norm(y)
+    cos = num / denominator
     sim = 0.5 + 0.5 * cos
     return sim
 
@@ -84,7 +84,7 @@ def cos_sim(x, y):
 # 杰卡德相似度(Jaccard index)
 
 
-def Jaccrad(model, reference):  # terms_reference为源句子，terms_model为候选句子
+def jaccard_distance(model, reference):  # terms_reference为源句子，terms_model为候选句子
     terms_reference = jieba.cut(reference)  # 默认精准模式
     terms_model = jieba.cut(model)
     grams_reference = set(terms_reference)  # 去重；如果不需要就改为list
@@ -93,6 +93,6 @@ def Jaccrad(model, reference):  # terms_reference为源句子，terms_model为�
     for i in grams_reference:
         if i in grams_model:
             temp = temp+1
-    fenmu = len(grams_model)+len(grams_reference)-temp  # 并集
-    jaccard_coefficient = float(temp/fenmu)  # 交集
+    union = len(grams_model)+len(grams_reference)-temp  # 并集
+    jaccard_coefficient = float(temp/union)  # 交集
     return jaccard_coefficient
