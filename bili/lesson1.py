@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 '''
 集中趋势分析：
@@ -19,5 +19,5 @@ m = data['value'].mode()
 print('众数: %.2f' % m)
 md = data['value'].median()
 print('中位数: %.2f' % md)
-
+print(data['value'].describe())
 
